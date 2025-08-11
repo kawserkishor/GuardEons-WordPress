@@ -81,6 +81,9 @@ $phone = get_theme_mod('guardeons_contact_phone');
         <h3><?php esc_html_e('Contact', 'guardeons'); ?></h3>
         <p><a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a><br>
         <?php if ($phone) : ?><a href="tel:<?php echo esc_attr(preg_replace('/\D+/', '', $phone)); ?>"><?php echo esc_html($phone); ?></a><?php endif; ?></p>
+        <?php $emergency = get_theme_mod('guardeons_emergency_phone'); if ($emergency): ?>
+          <p><strong><?php esc_html_e('Emergency (24/7):', 'guardeons'); ?></strong> <a href="tel:<?php echo esc_attr(preg_replace('/\D+/', '', $emergency)); ?>"><?php echo esc_html($emergency); ?></a></p>
+        <?php endif; ?>
       </div>
       <div>
         <h3><?php esc_html_e('Business Hours', 'guardeons'); ?></h3>
@@ -91,6 +94,11 @@ $phone = get_theme_mod('guardeons_contact_phone');
         <p><?php esc_html_e('Enter your office address here', 'guardeons'); ?></p>
       </div>
     </div>
+    <?php $map = get_theme_mod('guardeons_map_embed_src'); if ($map): ?>
+      <div class="reveal" style="margin-top:1rem">
+        <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="<?php echo esc_url($map); ?>" allowfullscreen></iframe>
+      </div>
+    <?php endif; ?>
   </div>
 </section>
 <script>

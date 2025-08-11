@@ -4,8 +4,13 @@
 <section class="hero section-dark">
   <div class="container hero-inner">
     <div class="hero-copy reveal">
-      <h1>Secure Your Digital Future with GuardEons</h1>
-      <p><?php echo esc_html__('End-to-end IT services and cybersecurity solutions: from web development and cloud to SOC and penetration testing. We protect and grow your digital business.', 'guardeons'); ?></p>
+      <h1 class="hero-title">Secure Your Digital Future with GuardEons</h1>
+      <p class="hero-sub"><?php echo esc_html__('End-to-end IT services and cybersecurity solutions: from web development and cloud to SOC and penetration testing. We protect and grow your digital business.', 'guardeons'); ?></p>
+      <div class="metrics">
+        <div class="metric"><span class="counter" data-target="15">0</span><span class="suffix">+</span><div class="label"><?php esc_html_e('Years Experience', 'guardeons'); ?></div></div>
+        <div class="metric"><span class="counter" data-target="200">0</span><span class="suffix">+</span><div class="label"><?php esc_html_e('Projects Delivered', 'guardeons'); ?></div></div>
+        <div class="metric"><span class="counter" data-target="99.9">0</span><span class="suffix">%</span><div class="label"><?php esc_html_e('Uptime', 'guardeons'); ?></div></div>
+      </div>
       <div class="hero-actions">
         <a href="#contact" class="button"><?php esc_html_e('Get Started', 'guardeons'); ?></a>
         <a href="#services" class="button secondary"><?php esc_html_e('View Our Services', 'guardeons'); ?></a>

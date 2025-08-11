@@ -29,7 +29,7 @@
       if ($q->have_posts()) :
         while ($q->have_posts()) : $q->the_post(); ?>
           <article class="card reveal">
-            <div class="icon" aria-hidden="true">◆</div>
+            <div class="icon" aria-hidden="true"><?php echo guardeons_get_icon_svg('shield'); ?></div>
             <h3><?php the_title(); ?></h3>
             <p><?php echo get_the_excerpt() ?: wp_trim_words(wp_strip_all_tags(get_the_content()), 22); ?></p>
             <div class="card-actions">
@@ -40,7 +40,7 @@
       else:
         foreach ($fallback as $item) : ?>
           <article class="card reveal">
-            <div class="icon" aria-hidden="true">◆</div>
+            <div class="icon" aria-hidden="true"><?php echo guardeons_get_icon_svg('shield'); ?></div>
             <h3><?php echo esc_html($item[0]); ?></h3>
             <p><?php echo esc_html($item[1]); ?></p>
             <div class="card-actions">

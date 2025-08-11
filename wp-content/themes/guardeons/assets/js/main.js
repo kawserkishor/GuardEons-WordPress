@@ -9,15 +9,34 @@
     });
   }
 
-  // Reveal on scroll
+  // Reveal on scroll + counters
   var observer = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
+        if (entry.target.classList.contains('metric')) {
+          var c = entry.target.querySelector('.counter');
+          if (c && !c.dataset.counted) {
+            c.dataset.counted = '1';
+            var target = parseFloat(c.dataset.target);
+            var start = 0;
+            var duration = 1200;
+            var startTs;
+            var isFloat = String(target).indexOf('.') > -1;
+            function animate(ts){
+              if (!startTs) startTs = ts;
+              var p = Math.min((ts - startTs) / duration, 1);
+              var val = start + (target - start) * p;
+              c.textContent = isFloat ? val.toFixed(1) : Math.round(val);
+              if (p < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+          }
+        }
         observer.unobserve(entry.target);
       }
     });
-  }, {threshold: 0.15}) : null;
+  }, {threshold: 0.2}) : null;
 
   if (observer) {
     document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });

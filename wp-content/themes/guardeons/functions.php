@@ -96,8 +96,8 @@ function guardeons_scripts() {
     // Main stylesheet (keep style.css for theme header; enqueue main.css)
     wp_enqueue_style('guardeons-main', $theme_uri . '/assets/css/main.css', [], GUARDEONS_VERSION);
 
-    // Google Fonts: Inter and Poppins
-    wp_enqueue_style('guardeons-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap', [], null);
+    // Google Fonts: Inter, Poppins, Montserrat
+    wp_enqueue_style('guardeons-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap', [], null);
 
     // Main JS
     wp_enqueue_script('guardeons-main', $theme_uri . '/assets/js/main.js', [], GUARDEONS_VERSION, true);
@@ -238,13 +238,13 @@ function guardeons_customize_register($wp_customize) {
 
     // Colors
     $colors = [
-        'primary' => ['#1a237e', __('Primary (Dark Blue)', 'guardeons')],
-        'secondary' => ['#283593', __('Secondary (Indigo)', 'guardeons')],
-        'accent' => ['#00e676', __('Accent (Cyber Green)', 'guardeons')],
-        'accentAlt' => ['#1de9b6', __('Accent Alt (Mint)', 'guardeons')],
+        'primary' => ['#1a365d', __('Primary (Deep Navy)', 'guardeons')],
+        'secondary' => ['#2563eb', __('Secondary (Tech Blue)', 'guardeons')],
+        'accent' => ['#10b981', __('Accent (Cyber Green)', 'guardeons')],
+        'accentAlt' => ['#34d399', __('Accent Alt (Mint)', 'guardeons')],
         'text' => ['#ffffff', __('Text on Dark', 'guardeons')],
-        'muted' => ['#f5f5f5', __('Muted Gray', 'guardeons')],
-        'dark' => ['#424242', __('Dark Gray', 'guardeons')],
+        'muted' => ['#f5f5f5', __('Muted Gray)', 'guardeons')],
+        'dark' => ['#424242', __('Dark Gray)', 'guardeons')],
     ];
 
     foreach ($colors as $key => $data) {
@@ -269,7 +269,7 @@ function guardeons_customize_register($wp_customize) {
     ]);
 
     $wp_customize->add_setting('guardeons_font_family', [
-        'default' => 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
+        'default' => 'Inter, Poppins, Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
         'sanitize_callback' => 'wp_filter_nohtml_kses',
     ]);
 
@@ -304,6 +304,37 @@ function guardeons_customize_register($wp_customize) {
         'type' => 'text',
         'section' => 'guardeons_contact',
     ]);
+
+    $wp_customize->add_setting('guardeons_emergency_phone', [
+        'default' => '',
+        'sanitize_callback' => 'wp_filter_nohtml_kses',
+    ]);
+    $wp_customize->add_control('guardeons_emergency_phone', [
+        'label' => __('Emergency Phone (24/7)', 'guardeons'),
+        'type' => 'text',
+        'section' => 'guardeons_contact',
+    ]);
+
+    $wp_customize->add_setting('guardeons_map_embed_src', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('guardeons_map_embed_src', [
+        'label' => __('Google Maps Embed URL', 'guardeons'),
+        'type' => 'url',
+        'section' => 'guardeons_contact',
+        'description' => __('Paste the Google Maps embed URL (src).', 'guardeons'),
+    ]);
+
+    $wp_customize->add_setting('guardeons_client_portal_url', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('guardeons_client_portal_url', [
+        'label' => __('Client Portal URL', 'guardeons'),
+        'type' => 'url',
+        'section' => 'guardeons_contact',
+    ]);
 }
 add_action('customize_register', 'guardeons_customize_register');
 
@@ -329,9 +360,57 @@ function guardeons_inline_styles() {
 }
 add_action('wp_head', 'guardeons_inline_styles');
 
+/**
+ * Optional: Output live chat snippet in footer if enabled
+ */
+function guardeons_output_chat_snippet(){
+    $enabled = get_theme_mod('guardeons_enable_chat', false);
+    $snippet = get_theme_mod('guardeons_chat_snippet', '');
+    if (!$enabled || empty($snippet)) return;
+    $allowed = [
+        'script' => [
+            'type' => true,
+            'src' => true,
+            'async' => true,
+            'defer' => true,
+            'crossorigin' => true,
+        ],
+    ];
+    echo wp_kses($snippet, $allowed);
+}
+add_action('wp_footer', 'guardeons_output_chat_snippet');
+
+function guardeons_customize_register_chat($wp_customize){
+    $wp_customize->add_section('guardeons_chat', [
+        'title' => __('Live Chat', 'guardeons'),
+        'panel' => 'guardeons_theme_options',
+    ]);
+    $wp_customize->add_setting('guardeons_enable_chat', [
+        'default' => false,
+        'sanitize_callback' => 'rest_sanitize_boolean',
+    ]);
+    $wp_customize->add_control('guardeons_enable_chat', [
+        'label' => __('Enable live chat snippet', 'guardeons'),
+        'type' => 'checkbox',
+        'section' => 'guardeons_chat',
+    ]);
+    $wp_customize->add_setting('guardeons_chat_snippet', [
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post',
+    ]);
+    $wp_customize->add_control('guardeons_chat_snippet', [
+        'label' => __('Chat snippet (script tag)', 'guardeons'),
+        'type' => 'textarea',
+        'section' => 'guardeons_chat',
+        'description' => __('Paste only the <script> tag provided by your chat provider.', 'guardeons'),
+    ]);
+}
+add_action('customize_register', 'guardeons_customize_register_chat');
+
 // Include modular features
 require_once get_template_directory() . '/inc/testimonials-cpt.php';
 require_once get_template_directory() . '/inc/customizer-newsletter.php';
+require_once get_template_directory() . '/inc/icons.php';
 
 /**
  * Contact form handler (admin-post)

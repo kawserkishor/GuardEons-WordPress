@@ -2,6 +2,7 @@
 /** Page template */
 get_header(); ?>
 <main id="primary" class="site-main container">
+<?php get_template_part('template-parts/components/breadcrumbs'); ?>
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
