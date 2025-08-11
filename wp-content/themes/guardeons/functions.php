@@ -284,6 +284,18 @@ function guardeons_customize_register($wp_customize) {
         'panel' => 'guardeons_theme_options',
     ]);
 
+    // Modern palette toggle
+    $wp_customize->add_setting('guardeons_use_modern_palette', [
+        'default' => true,
+        'sanitize_callback' => 'rest_sanitize_boolean',
+    ]);
+    $wp_customize->add_control('guardeons_use_modern_palette', [
+        'label' => __('Use Modern Color Palette', 'guardeons'),
+        'type' => 'checkbox',
+        'section' => 'guardeons_brand',
+        'description' => __('Toggle to use the modern charcoal/cyan palette regardless of previous saved colors.', 'guardeons'),
+    ]);
+
     $wp_customize->add_setting('guardeons_contact_email', [
         'default' => get_bloginfo('admin_email'),
         'sanitize_callback' => 'sanitize_email',
@@ -341,16 +353,30 @@ add_action('customize_register', 'guardeons_customize_register');
  * Output CSS variables based on Customizer
  */
 function guardeons_inline_styles() {
-    $vars = [
-        '--color-primary' => get_theme_mod('guardeons_color_primary', '#1a237e'),
-        '--color-secondary' => get_theme_mod('guardeons_color_secondary', '#283593'),
-        '--color-accent' => get_theme_mod('guardeons_color_accent', '#00e676'),
-        '--color-accent-alt' => get_theme_mod('guardeons_color_accentAlt', '#1de9b6'),
-        '--color-text-on-dark' => get_theme_mod('guardeons_color_text', '#ffffff'),
-        '--color-muted' => get_theme_mod('guardeons_color_muted', '#f5f5f5'),
-        '--color-dark' => get_theme_mod('guardeons_color_dark', '#424242'),
-        '--font-base' => get_theme_mod('guardeons_font_family', 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"'),
-    ];
+    $use_modern = (bool) get_theme_mod('guardeons_use_modern_palette', true);
+    if ($use_modern) {
+        $vars = [
+            '--color-primary' => '#0f172a',
+            '--color-secondary' => '#111827',
+            '--color-accent' => '#0ea5e9',
+            '--color-accent-alt' => '#38bdf8',
+            '--color-text-on-dark' => '#ffffff',
+            '--color-muted' => '#f3f4f6',
+            '--color-dark' => '#111827',
+            '--font-base' => get_theme_mod('guardeons_font_family', 'Montserrat, Inter, Poppins, Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"'),
+        ];
+    } else {
+        $vars = [
+            '--color-primary' => get_theme_mod('guardeons_color_primary', '#0f172a'),
+            '--color-secondary' => get_theme_mod('guardeons_color_secondary', '#111827'),
+            '--color-accent' => get_theme_mod('guardeons_color_accent', '#0ea5e9'),
+            '--color-accent-alt' => get_theme_mod('guardeons_color_accentAlt', '#38bdf8'),
+            '--color-text-on-dark' => get_theme_mod('guardeons_color_text', '#ffffff'),
+            '--color-muted' => get_theme_mod('guardeons_color_muted', '#f3f4f6'),
+            '--color-dark' => get_theme_mod('guardeons_color_dark', '#111827'),
+            '--font-base' => get_theme_mod('guardeons_font_family', 'Montserrat, Inter, Poppins, Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"'),
+        ];
+    }
     echo '<style id="guardeons-inline-vars">:root{';
     foreach ($vars as $k => $v) {
         echo esc_html($k) . ':' . esc_html($v) . ';';

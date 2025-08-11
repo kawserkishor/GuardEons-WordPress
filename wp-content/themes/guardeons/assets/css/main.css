@@ -228,3 +228,15 @@ textarea{min-height:140px}
 @media (max-width: 900px){
   #about .cards{grid-template-columns:repeat(2,1fr)}
 }
+
+/* Minimalist base adjustments */
+body{background:#fafafa;color:#0f172a}
+section{padding:clamp(3rem,7vw,6rem) 0}
+.container{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+.site-header.header{background:rgba(15,23,42,.9);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.main-navigation a{font-weight:500}
+.section-heading{font-family:Montserrat, var(--font-base);font-weight:700;letter-spacing:.2px}
+.hero-title{font-family:Montserrat, var(--font-base);font-weight:800}
+.hero-sub{max-width:64ch;margin-left:auto;margin-right:auto}
+.button,.wp-element-button,input[type=submit]{border-radius:.6rem}
+.card{border-radius:1rem}
