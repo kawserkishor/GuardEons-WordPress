@@ -42,6 +42,22 @@
     document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
   }
 
+  // Service details expand/collapse
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.service-toggle');
+    if (!btn) return;
+    var details = btn.closest('.service-card').querySelector('.service-details');
+    if (!details) return;
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    if (expanded) {
+      details.hidden = true;
+    } else {
+      details.hidden = false;
+    }
+    e.preventDefault();
+  });
+
   // Simple particles background for hero
   var canvas = document.querySelector('#hero-particles');
   if (canvas && canvas.getContext) {
@@ -66,7 +82,7 @@
 
     function step(){
       ctx.clearRect(0,0,width,height);
-      ctx.fillStyle = 'rgba(0,230,118,0.6)';
+      ctx.fillStyle = 'rgba(16,185,129,0.6)';
       particles.forEach(function(p){
         p.x += p.vx; p.y += p.vy;
         if (p.x<0||p.x>width) p.vx*=-1;

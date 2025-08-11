@@ -26,7 +26,6 @@
       <div class="particles">
         <canvas id="hero-particles" aria-hidden="true"></canvas>
       </div>
-      <div class="hero-illustration" aria-hidden="true" style="height:320px;background:radial-gradient(120px 120px at 40% 40%, rgba(255,255,255,.12), transparent), linear-gradient(145deg, rgba(0,230,118,.25), transparent 60%);border-radius:1rem;border:1px solid rgba(255,255,255,.15)"></div>
     </div>
   </div>
 </section>

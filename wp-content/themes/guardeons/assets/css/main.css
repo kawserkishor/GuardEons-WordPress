@@ -145,7 +145,11 @@ textarea{min-height:140px}
 
 /* Hero override */
 .hero{background:linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); color:#fff; padding:120px 0 80px; text-align:center; position:relative; overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 300px at 20% -10%, rgba(255,255,255,.12), transparent), radial-gradient(600px 300px at 80% 110%, rgba(16,185,129,.15), transparent);opacity:.25}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(1200px 400px at 20% -10%, rgba(255,255,255,.08), transparent),
+  radial-gradient(900px 300px at 80% 110%, rgba(16,185,129,.15), transparent),
+  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20"><rect width="20" height="20" fill="none"/><rect x="0" y="0" width="1" height="1" fill="%23ffffff" opacity="0.08"/><rect x="10" y="10" width="1" height="1" fill="%2300e676" opacity="0.08"/></svg>');
+  background-repeat:repeat; background-size:auto; opacity:.35}
 .hero-inner{position:relative;z-index:2}
 .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
@@ -200,4 +204,27 @@ textarea{min-height:140px}
 @media (min-width: 1024px){
   .hero-title{font-size:3.5rem}
   .hero-sub{font-size:1.25rem}
+}
+
+/* Services title contrast and expandable details */
+.services .card h3{color:#0b1130}
+.service-details{display:none;margin-top:.75rem;color:#334155}
+.service-details ul{margin:.25rem 0 .5rem .95rem}
+.service-toggle{display:inline-flex;align-items:center;gap:.5rem}
+.service-toggle[aria-expanded="true"] + .service-details{display:block}
+
+/* About stats emphasis */
+#about .cards{grid-template-columns:repeat(4,1fr)}
+#about .cards .card{background:linear-gradient(180deg,#0f143f, #1a365d);color:#fff;text-align:center}
+#about .cards .card h3{font-size:1.8rem;color:#fff}
+#about .cards .card p{color:#e2e8f0}
+
+/* Footer defaults */
+.footer-defaults{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.25rem}
+.footer-defaults h4{margin:.25rem 0  .5rem;color:#e0f2f1}
+.footer-defaults a{color:#cfd8dc;text-decoration:none}
+.footer-defaults a:hover{text-decoration:underline}
+
+@media (max-width: 900px){
+  #about .cards{grid-template-columns:repeat(2,1fr)}
 }
