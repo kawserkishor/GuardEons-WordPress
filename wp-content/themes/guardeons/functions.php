@@ -6,7 +6,12 @@
  */
 
 if (!defined('GUARDEONS_VERSION')) {
-    define('GUARDEONS_VERSION', '1.2.3');
+    define('GUARDEONS_VERSION', '1.2.4');
+}
+
+/** Simple checkbox sanitizer for Customizer */
+function guardeons_sanitize_checkbox($value){
+    return (isset($value) && (bool) $value) ? true : false;
 }
 
 /**
@@ -287,7 +292,7 @@ function guardeons_customize_register($wp_customize) {
     // Modern palette toggle
     $wp_customize->add_setting('guardeons_use_modern_palette', [
         'default' => true,
-        'sanitize_callback' => 'rest_sanitize_boolean',
+        'sanitize_callback' => 'guardeons_sanitize_checkbox',
     ]);
     $wp_customize->add_control('guardeons_use_modern_palette', [
         'label' => __('Use Modern Color Palette', 'guardeons'),
@@ -412,7 +417,7 @@ function guardeons_customize_register_chat($wp_customize){
     ]);
     $wp_customize->add_setting('guardeons_enable_chat', [
         'default' => false,
-        'sanitize_callback' => 'rest_sanitize_boolean',
+        'sanitize_callback' => 'guardeons_sanitize_checkbox',
     ]);
     $wp_customize->add_control('guardeons_enable_chat', [
         'label' => __('Enable live chat snippet', 'guardeons'),
@@ -442,7 +447,9 @@ require_once get_template_directory() . '/inc/icons.php';
  */
 function guardeons_handle_contact_form() {
     if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'guardeons_contact')) {
-        wp_die(__('Security check failed.', 'guardeons'));
+        $redirect = wp_get_referer() ?: home_url('/');
+        wp_safe_redirect(add_query_arg('contact', 'invalid', $redirect));
+        exit;
     }
 
     $service_interest = isset($_POST['service_interest']) ? array_map('sanitize_text_field', (array) $_POST['service_interest']) : [];

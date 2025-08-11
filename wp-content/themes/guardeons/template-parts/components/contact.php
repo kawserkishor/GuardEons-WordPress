@@ -3,7 +3,7 @@
 $email = get_theme_mod('guardeons_contact_email', get_bloginfo('admin_email'));
 $phone = get_theme_mod('guardeons_contact_phone');
 ?>
-<section id="contact" class="section section-dark contact">
+<section id="contact" class="section contact">
   <div class="container contact-container">
     <header class="section-header reveal">
       <h2 class="section-heading"><?php esc_html_e('Let’s Talk', 'guardeons'); ?></h2>

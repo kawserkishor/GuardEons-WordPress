@@ -240,3 +240,12 @@ section{padding:clamp(3rem,7vw,6rem) 0}
 .hero-sub{max-width:64ch;margin-left:auto;margin-right:auto}
 .button,.wp-element-button,input[type=submit]{border-radius:.6rem}
 .card{border-radius:1rem}
+
+/* Contact contrast improvements */
+.contact{background:linear-gradient(135deg,#f8fafc 0%,#eef2f7 100%)}
+.contact .section-heading{color:#0f172a}
+.contact .section-sub{color:#334155}
+.contact-form{color:#0f172a}
+.form-group label{color:#0f172a}
+.form-group input,.form-group select,.form-group textarea{background:#fff;border-color:#cbd5e1;color:#0f172a}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#94a3b8}
