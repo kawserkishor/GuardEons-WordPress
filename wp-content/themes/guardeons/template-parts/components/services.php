@@ -33,7 +33,7 @@
             <h3><?php the_title(); ?></h3>
             <p><?php echo get_the_excerpt() ?: wp_trim_words(wp_strip_all_tags(get_the_content()), 22); ?></p>
             <div class="card-actions">
-              <button type="button" class="button-outline service-toggle" aria-expanded="false"><?php esc_html_e('Learn More', 'guardeons'); ?></button>
+              <button type="button" class="button-outline service-toggle" aria-expanded="false"><?php esc_html_e('See Benefits', 'guardeons'); ?></button>
             </div>
             <div class="service-details" hidden>
               <?php echo wpautop(wp_kses_post(get_the_content())); ?>
@@ -47,7 +47,7 @@
             <h3><?php echo esc_html($title); ?></h3>
             <p><?php echo esc_html($desc); ?></p>
             <div class="card-actions">
-              <button type="button" class="button-outline service-toggle" aria-expanded="false"><?php esc_html_e('Learn More', 'guardeons'); ?></button>
+              <button type="button" class="button-outline service-toggle" aria-expanded="false"><?php esc_html_e('See Benefits', 'guardeons'); ?></button>
             </div>
             <div class="service-details" hidden>
               <ul>

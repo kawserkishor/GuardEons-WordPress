@@ -95,8 +95,8 @@ function guardeons_scripts() {
     // Main stylesheet (keep style.css for theme header; enqueue main.css)
     wp_enqueue_style('guardeons-main', $theme_uri . '/assets/css/main.css', [], GUARDEONS_VERSION);
 
-    // Google Fonts: Inter, Poppins, Montserrat
-    wp_enqueue_style('guardeons-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap', [], null);
+    // Google Fonts: Montserrat for headings, Inter/Lato for body
+    wp_enqueue_style('guardeons-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=Lato:wght@400;700&display=swap', [], null);
 
     // Main JS
     wp_enqueue_script('guardeons-main', $theme_uri . '/assets/js/main.js', [], GUARDEONS_VERSION, true);
@@ -268,7 +268,7 @@ function guardeons_customize_register($wp_customize) {
     ]);
 
     $wp_customize->add_setting('guardeons_font_family', [
-        'default' => 'Inter, Poppins, Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
+        'default' => 'Montserrat, Inter, Poppins, Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
         'sanitize_callback' => 'wp_filter_nohtml_kses',
     ]);
 

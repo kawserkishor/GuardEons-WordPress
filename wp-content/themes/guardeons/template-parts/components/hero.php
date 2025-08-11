@@ -4,7 +4,7 @@
 <section id="home" class="hero section-dark">
   <div class="container hero-inner">
     <div class="hero-copy reveal">
-      <h1 class="hero-title">Secure Your Digital Future with GuardEons</h1>
+      <h1 class="hero-title">Building the Digital Future for Your Business</h1>
       <p class="hero-sub"><?php echo esc_html__('End-to-end IT services and cybersecurity solutions: from web development and cloud to SOC and penetration testing. We protect and grow your digital business.', 'guardeons'); ?></p>
       <div class="metrics">
         <div class="metric"><span class="counter" data-target="15">0</span><span class="suffix">+</span><div class="label"><?php esc_html_e('Years Experience', 'guardeons'); ?></div></div>
