@@ -1,7 +1,7 @@
 <?php
 /** Hero Section */
 ?>
-<section class="hero section-dark">
+<section id="home" class="hero section-dark">
   <div class="container hero-inner">
     <div class="hero-copy reveal">
       <h1 class="hero-title">Secure Your Digital Future with GuardEons</h1>

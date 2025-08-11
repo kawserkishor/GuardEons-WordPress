@@ -6,8 +6,7 @@
  */
 
 if (!defined('GUARDEONS_VERSION')) {
-    $theme = wp_get_theme();
-    define('GUARDEONS_VERSION', $theme->get('Version'));
+    define('GUARDEONS_VERSION', '1.2.1');
 }
 
 /**

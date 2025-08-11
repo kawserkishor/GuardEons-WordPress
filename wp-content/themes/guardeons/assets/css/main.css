@@ -20,6 +20,9 @@ body{
 img{max-width:100%;height:auto}
 .container{max-width:1200px;margin:0 auto;padding:0 1rem}
 
+/* Offset for fixed header */
+.site-content{padding-top:80px}
+
 /* Header */
 .site-header{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,var(--color-primary),var(--color-secondary));color:var(--color-text-on-dark);box-shadow:0 4px 16px rgba(0,0,0,.2)}
 .header-inner{display:flex;align-items:center;gap:1rem;justify-content:space-between;padding:.75rem 0}
