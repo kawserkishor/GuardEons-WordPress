@@ -13,9 +13,9 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e('Skip to content', 'guardeons'); ?></a>
-<header id="site-header" class="site-header" role="banner">
-  <div class="container header-inner">
-    <div class="site-branding">
+<header id="site-header" class="site-header header" role="banner">
+  <div class="navbar">
+    <div class="site-branding logo">
       <?php if (has_custom_logo()) { the_custom_logo(); } ?>
       <div class="site-title-wrap">
         <?php if (is_front_page() && is_home()) : ?>
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+    <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false">
       <span class="menu-icon" aria-hidden="true"></span>
       <span class="screen-reader-text"><?php esc_html_e('Primary Menu', 'guardeons'); ?></span>
     </button>
@@ -40,7 +40,9 @@
         wp_nav_menu([
           'theme_location' => 'primary',
           'menu_id'        => 'primary-menu',
+          'menu_class'     => 'nav-menu',
           'container'      => false,
+          'fallback_cb'    => 'guardeons_default_menu',
         ]);
       ?>
     </nav>

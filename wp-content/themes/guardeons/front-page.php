@@ -8,6 +8,7 @@ get_header(); ?>
   <?php get_template_part('template-parts/components/hero'); ?>
   <?php get_template_part('template-parts/components/services'); ?>
   <?php get_template_part('template-parts/components/trust'); ?>
+  <?php get_template_part('template-parts/components/stats'); ?>
   <?php get_template_part('template-parts/components/about'); ?>
   <?php get_template_part('template-parts/components/case-studies'); ?>
   <?php get_template_part('template-parts/components/testimonials'); ?>

@@ -453,3 +453,16 @@ function guardeons_handle_contact_form() {
 add_action('admin_post_nopriv_guardeons_contact', 'guardeons_handle_contact_form');
 add_action('admin_post_guardeons_contact', 'guardeons_handle_contact_form');
 
+function guardeons_default_menu(){
+    echo '<ul class="nav-menu">'
+        .'<li><a href="#home">'.esc_html__('Home','guardeons').'</a></li>'
+        .'<li><a href="#services">'.esc_html__('Services','guardeons').'</a></li>'
+        .'<li><a href="#about">'.esc_html__('About','guardeons').'</a></li>'
+        .'<li><a href="#case-studies">'.esc_html__('Case Studies','guardeons').'</a></li>'
+        .'<li><a href="#team">'.esc_html__('Team','guardeons').'</a></li>'
+        .'<li><a href="#careers">'.esc_html__('Careers','guardeons').'</a></li>'
+        .'<li><a href="#insights">'.esc_html__('Blog','guardeons').'</a></li>'
+        .'<li><a href="#contact">'.esc_html__('Contact','guardeons').'</a></li>'
+      .'</ul>';
+}
+

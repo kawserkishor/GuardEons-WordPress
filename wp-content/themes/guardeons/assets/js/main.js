@@ -1,10 +1,10 @@
 (function(){
   // Mobile menu toggle
-  var toggle = document.querySelector('.menu-toggle');
-  var nav = document.querySelector('.main-navigation');
-  if (toggle && nav) {
+  var toggle = document.querySelector('.nav-toggle');
+  var menu = document.querySelector('.nav-menu');
+  if (toggle && menu) {
     toggle.addEventListener('click', function(){
-      var isOpen = nav.classList.toggle('is-open');
+      var isOpen = menu.classList.toggle('active');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   }
