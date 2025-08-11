@@ -6,7 +6,7 @@
  */
 
 if (!defined('GUARDEONS_VERSION')) {
-    define('GUARDEONS_VERSION', '1.2.1');
+    define('GUARDEONS_VERSION', '1.2.3');
 }
 
 /**
